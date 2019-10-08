@@ -68,8 +68,62 @@ end
 
 bot = Robot.new
 
-bot.move_north(4)
-bot.move_east(3)
-bot.move_south(4)
-bot.move_west(7)
-bot.distance
+def commandTest(cArray)
+  for i in cArray
+    if ['F', 'B', 'R', 'L'].include? i[0] and i[1].is_a? Integer
+      return cArray
+    else
+      print("Invalid input")
+    end
+  end
+end
+
+commands = gets.chomp
+
+cArray = commands.split(",")
+print cArray
+
+for i in cArray do
+  # check current facing direction
+  print i
+  currentFacing = bot.facing
+  # print "\n", bot.facing
+  num = i[1].to_i
+  # print "\n", i[1]
+  if currentFacing == :N && i[0] == "F"
+    bot.move_north(num)
+  elsif currentFacing == :N && i[0] == "B"
+    bot.move_south(num)
+  elsif currentFacing == :E && i[0] == "F"
+    bot.move_east(num)
+  elsif currentFacing == :E && i[0] == "B"
+    bot.move_west(num)
+  elsif currentFacing == :S && i[0] == "F"
+    bot.move_south(num)
+  elsif currentFacing == :S && i[0] == "B"
+    bot.move_north(num)
+  elsif currentFacing == :W && i[0] == "F"
+    bot.move_west(num)
+  elsif currentFacing == :W && i[0] == "B"
+    bot.move_east(num)
+  elsif i[0] == 'R'
+    bot.turn_right
+  elsif i[0] == 'L'
+    bot.turn_left
+  else 
+    print("\nShould not hit here")
+  end
+  print "\n"
+  print bot.facing()
+  print "\n"
+  print bot.getPos()
+  print "\n"
+end
+
+print bot.distance
+
+
+
+
+ 
+
