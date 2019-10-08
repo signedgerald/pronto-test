@@ -68,28 +68,17 @@ end
 
 bot = Robot.new
 
-def commandTest(cArray)
-  for i in cArray
-    if ['F', 'B', 'R', 'L'].include? i[0] and i[1].is_a? Integer
-      return cArray
-    else
-      print("Invalid input")
-    end
-  end
-end
-
+puts "Please enter commands for robot to move: "
 commands = gets.chomp
-
 cArray = commands.split(",")
-print cArray
 
 for i in cArray do
   # check current facing direction
-  print i
   currentFacing = bot.facing
-  # print "\n", bot.facing
+  
+  # convert string to int for number of steps
   num = i[1].to_i
-  # print "\n", i[1]
+
   if currentFacing == :N && i[0] == "F"
     bot.move_north(num)
   elsif currentFacing == :N && i[0] == "B"
@@ -111,13 +100,14 @@ for i in cArray do
   elsif i[0] == 'L'
     bot.turn_left
   else 
-    print("\nShould not hit here")
+    print("\nHit invalid input")
   end
-  print "\n"
-  print bot.facing()
-  print "\n"
-  print bot.getPos()
-  print "\n"
+  
+  # print "\n"
+  # print bot.facing()
+  # print "\n"
+  # print bot.getPos()
+  # print "\n"
 end
 
 print bot.distance
